@@ -38,11 +38,44 @@ export class AppComponent implements OnInit {
     this.reactiveForm.statusChanges.subscribe((value) => {
       console.log(value);
       this.formStatus = value;
-    })
+    });
+
+    // setTimeout(() => {
+    //   this.reactiveForm.setValue({
+    //     personalDetails: {
+    //       firstname: '',
+    //       lastname: '',
+    //       email: 'abc@example.com',
+    //     },
+    //     gender: '',
+    //     country: '',
+    //     hobbies: '',
+    //     skills: []
+    //   });
+    // }, 4000);
+
+    setTimeout(() => {
+      this.reactiveForm.patchValue({
+        personalDetails: {
+          email: 'abc@example.com'
+        }
+      })
+    }, 4000);
   }
 
   onSubmit() {
     console.log(this.reactiveForm);
+    this.reactiveForm.reset({
+      personalDetails: {
+        firstname: '',
+        lastname: '',
+        email: '',
+      },
+      gender: 'male',
+      country: 'uz',
+      hobbies: '',
+      skills: []
+    });
   }
 
   addSkills() {
